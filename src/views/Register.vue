@@ -1,17 +1,15 @@
 <template>
-  <div class="home">
-    Home
-  </div>
+  <RegisterUser />
 </template>
 
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
-import RegisterUser from "@/components/RegisterUser.vue"; // @ is an alias to /src
+import RegisterUser from "@/components/RegisterUser.vue";
 
 @Component({
   components: {
     RegisterUser
   }
 })
-export default class Home extends Vue {}
+export default class Register extends Vue {}
 </script>

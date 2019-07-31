@@ -1,12 +1,41 @@
 <template>
   <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
+    <h1 id="header">Twitter</h1>
+    <div id="container">
+      <div id="nav">
+        <div v-if="!LoggedIn">
+          <router-link to="/login">Войти</router-link><br />
+          <router-link to="/register">Регистрация</router-link><br />
+        </div>
+        <div v-else>
+          <router-link to="/">Главная</router-link><br />
+          <router-link to="/profile">Профиль</router-link><br />
+          <button @click="logOut">Выйти</button>
+        </div>
+      </div>
+      <div id="content">
+        <router-view />
+      </div>
     </div>
-    <router-view />
   </div>
 </template>
+
+<script lang="ts">
+import { Component, Vue } from "vue-property-decorator";
+
+@Component
+export default class Register extends Vue {
+  logOut() {
+    localStorage.removeItem("user");
+    this.$store.commit("logOut");
+    this.$router.push("/login");
+  }
+
+  get LoggedIn() {
+    return this.$store.getters.getLoggedIn;
+  }
+}
+</script>
 
 <style>
 #app {
@@ -16,7 +45,16 @@
   text-align: center;
   color: #2c3e50;
 }
+#header {
+  color: rgb(29, 161, 242);
+}
+
+#container {
+  display: flex;
+}
+
 #nav {
+  width: 20%;
   padding: 30px;
 }
 
@@ -26,6 +64,10 @@
 }
 
 #nav a.router-link-exact-active {
-  color: #42b983;
+  color: rgb(29, 161, 242);
+}
+
+#content {
+  width: 80%;
 }
 </style>
