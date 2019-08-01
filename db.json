@@ -12,5 +12,28 @@
       "password": "test",
       "id": 2
     }
+  ],
+  "posts": [
+    {
+      "postText": "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.\n",
+      "likes": 3,
+      "userId": 1,
+      "userName": "adread",
+      "id": 1
+    },
+    {
+      "postText": "Lorem Ipsum является текст-заполнитель обычно используется в графических, печать и издательской индустрии для предварительного просмотра макета и визуальных макетах.",
+      "likes": 4,
+      "userId": 1,
+      "userName": "adread",
+      "id": 2
+    },
+    {
+      "postText": "user 2 test",
+      "likes": 1,
+      "userId": 2,
+      "userName": "test",
+      "id": 3
+    }
   ]
 }

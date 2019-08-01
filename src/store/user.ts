@@ -1,14 +1,6 @@
 import axios from "axios";
-
-interface User {
-  info?: {
-    nickname: String;
-    email: String;
-    password: String;
-    id: Number;
-  } | null;
-  loggedIn: Boolean;
-}
+import { ActionTree } from "vuex";
+import { User } from "@/types/User";
 
 const user = localStorage.getItem("user");
 
@@ -20,6 +12,12 @@ export default {
   getters: {
     getUserInfo(state: User) {
       return state.info;
+    },
+    userName(state: User) {
+      if (state.info) {
+        return state.info.nickname;
+      }
+      return state;
     },
     getLoggedIn(state: User) {
       return state.loggedIn;
@@ -36,7 +34,7 @@ export default {
     }
   },
   actions: {
-    loginUser({ commit }: any, payload: any) {
+    loginUser({ commit }, payload) {
       axios
         .get("http://localhost:3004/users?email=" + payload.email)
         .then(responce => {
@@ -59,5 +57,5 @@ export default {
         })
         .catch(error => console.log(error));
     }
-  }
+  } as ActionTree<any, any>
 };

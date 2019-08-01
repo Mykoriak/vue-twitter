@@ -1,16 +1,20 @@
 <template>
   <div class="home">
-    Home
+    <CreatePost />
+    <hr />
+    <ShowPosts />
   </div>
 </template>
 
 <script lang="ts">
 import { Component, Vue } from "vue-property-decorator";
-import RegisterUser from "@/components/RegisterUser.vue"; // @ is an alias to /src
+import CreatePost from "@/components/CreatePost.vue"; // @ is an alias to /src
+import ShowPosts from "@/components/ShowPosts.vue";
 
 @Component({
   components: {
-    RegisterUser
+    CreatePost,
+    ShowPosts
   }
 })
 export default class Home extends Vue {}
