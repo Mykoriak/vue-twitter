@@ -23,7 +23,7 @@
     },
     {
       "postText": "Lorem Ipsum является текст-заполнитель обычно используется в графических, печать и издательской индустрии для предварительного просмотра макета и визуальных макетах.",
-      "likes": 4,
+      "likes": 11,
       "userId": 1,
       "userName": "adread",
       "id": 2
@@ -34,6 +34,36 @@
       "userId": 2,
       "userName": "test",
       "id": 3
+    }
+  ],
+  "comments": [
+    {
+      "commentText": "Test Comment",
+      "userId": 1,
+      "userName": "adread",
+      "postId": 1,
+      "id": 1
+    },
+    {
+      "commentText": "Test 123",
+      "userId": 1,
+      "userName": "adread",
+      "postId": 2,
+      "id": 2
+    },
+    {
+      "commentText": "Comment from user test",
+      "userId": 2,
+      "userName": "test",
+      "postId": 2,
+      "id": 3
+    },
+    {
+      "commentText": "test 23 23 423 42 4\ngdfg dfs g\ng\ndf gdf g\ngdf gd",
+      "userId": 1,
+      "userName": "adread",
+      "postId": 3,
+      "id": 4
     }
   ]
 }

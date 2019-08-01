@@ -3,8 +3,8 @@
     <div class="post" v-for="(post, index) in computedPosts" :key="index">
       <h2>{{ post.userName }}:</h2>
       <p>{{ post.postText }}</p>
-      <button>Comment</button>
       {{ post.likes }}<button @click="like(post)">Like</button>
+      <Comments :postId="post.id" />
     </div>
   </div>
 </template>
@@ -13,8 +13,13 @@
 import { Component, Vue, Prop } from "vue-property-decorator";
 import axios from "axios";
 import { Post } from "@/types/Post";
+import Comments from "@/components/Comments.vue";
 
-@Component
+@Component({
+  components: {
+    Comments
+  }
+})
 export default class ShowPosts extends Vue {
   @Prop() private username?: string;
 

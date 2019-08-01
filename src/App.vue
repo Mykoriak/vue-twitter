@@ -24,7 +24,7 @@
 import { Component, Vue } from "vue-property-decorator";
 
 @Component
-export default class Register extends Vue {
+export default class App extends Vue {
   logOut() {
     localStorage.removeItem("user");
     this.$store.commit("logOut");
@@ -33,6 +33,10 @@ export default class Register extends Vue {
 
   get LoggedIn() {
     return this.$store.getters.getLoggedIn;
+  }
+
+  mounted() {
+    this.$store.dispatch("loadComments");
   }
 }
 </script>

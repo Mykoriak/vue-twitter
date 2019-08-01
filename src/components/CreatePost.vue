@@ -43,6 +43,7 @@ button {
   border-bottom-right-radius: 9999px;
   border-top-left-radius: 9999px;
   border-top-right-radius: 9999px;
+  border: none;
 }
 
 textarea {

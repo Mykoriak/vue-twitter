@@ -21,7 +21,7 @@ import { Component, Vue } from "vue-property-decorator";
 import axios from "axios";
 
 @Component
-export default class LoginUser extends Vue {
+export default class RegisterUser extends Vue {
   email = "";
   password = "";
   nickname = "";
