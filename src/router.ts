@@ -28,27 +28,13 @@ export const router = new Router({
       path: "/login",
       name: "Login",
       component: () => import("./views/Login.vue"),
-      beforeEnter(to, from, next) {
-        const loggedIn = localStorage.getItem("user");
-        if (loggedIn) {
-          next("/");
-        } else {
-          next();
-        }
-      }
+      meta: { requiresLogin: false }
     },
     {
       path: "/register",
       name: "Register",
       component: () => import("./views/Register.vue"),
-      beforeEnter(to, from, next) {
-        const loggedIn = localStorage.getItem("user");
-        if (loggedIn) {
-          next("/");
-        } else {
-          next();
-        }
-      }
+      meta: { requiresLogin: false }
     }
   ]
 });
@@ -57,6 +43,8 @@ router.beforeEach((to, from, next) => {
   const loggedIn = localStorage.getItem("user");
   if (to.matched.some(record => record.meta.requiresLogin) && !loggedIn) {
     next("/login");
+  } else if (loggedIn && !to.matched.some(record => record.meta.requiresLogin)) {
+    next("/");
   } else {
     next();
   }
