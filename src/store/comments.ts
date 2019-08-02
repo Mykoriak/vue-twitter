@@ -23,20 +23,22 @@ export default {
     addComment({ commit }, payload: Comment) {
       axios
         .post("http://localhost:3004/comments", payload)
-        .then(responce => {
+        .then(response => {
           commit("addComment", payload);
         })
         .catch(error => console.log(error));
     },
-    loadComments({ commit }) {
-      axios
-        .get("http://localhost:3004/comments")
-        .then(responce => {
-          if (responce.data.length > 0) {
-            commit("setComments", responce.data);
-          }
-        })
-        .catch(error => console.log(error));
+    async loadComments({ commit }, payload) {
+      try {
+        const response = await axios.get(
+          "http://localhost:3004/comments?postId=" + payload
+        );
+        if (response.data.length > 0) {
+          commit("setComments", response.data);
+        }
+      } catch (error) {
+        console.error(error);
+      }
     }
   } as ActionTree<any, any>
 };

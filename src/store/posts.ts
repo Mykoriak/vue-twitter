@@ -27,9 +27,9 @@ export default {
       const urlParams = payload !== "" ? "?userName=" + payload : "";
       axios
         .get("http://localhost:3004/posts" + urlParams)
-        .then(responce => {
-          if (responce.data.length > 0) {
-            commit("setPosts", responce.data);
+        .then(response => {
+          if (response.data.length > 0) {
+            commit("setPosts", response.data);
           }
         })
         .catch(error => console.log(error));
@@ -37,7 +37,7 @@ export default {
     addPost({ commit }, payload: Post) {
       axios
         .post("http://localhost:3004/posts", payload)
-        .then(responce => {
+        .then(response => {
           commit("addPost", payload);
         })
         .catch(error => console.log(error));
@@ -46,7 +46,7 @@ export default {
       payload.likes += 1;
       axios
         .put("http://localhost:3004/posts/" + payload.id, payload)
-        .then(responce => {})
+        .then(response => {})
         .catch(error => console.log(error));
     }
   } as ActionTree<any, any>

@@ -1,10 +1,6 @@
 <template>
   <div>
-    <div
-      class="comment"
-      v-for="(comment, index) in computedComments"
-      :key="index"
-    >
+    <div class="comment" v-for="(comment, index) in comments" :key="index">
       <h2>{{ comment.userName }}:</h2>
       <p>{{ comment.commentText }}</p>
     </div>
@@ -14,16 +10,18 @@
 <script lang="ts">
 import { Component, Vue, Prop } from "vue-property-decorator";
 import axios from "axios";
+import { mapState } from "vuex";
 import { Comment } from "@/types/Comment";
 
 @Component
 export default class ShowComments extends Vue {
   @Prop() private postId?: number;
+  comments = [];
 
-  get computedComments() {
-    return this.$store.getters.commentList.filter(
-      (comment: Comment) => comment.postId === this.postId
-    );
+  beforeMount() {
+    this.$store.dispatch("loadComments", this.postId).then(() => {
+      this.comments = this.$store.getters.commentList;
+    });
   }
 }
 </script>

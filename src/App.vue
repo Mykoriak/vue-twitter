@@ -34,10 +34,6 @@ export default class App extends Vue {
   get LoggedIn() {
     return this.$store.getters.getLoggedIn;
   }
-
-  mounted() {
-    this.$store.dispatch("loadComments");
-  }
 }
 </script>
 

@@ -35,7 +35,7 @@ export default class RegisterUser extends Vue {
 
     axios
       .post("http://localhost:3004/users", user)
-      .then(responce => {
+      .then(response => {
         this.$router.push("/login");
       })
       .catch(error => console.log(error));

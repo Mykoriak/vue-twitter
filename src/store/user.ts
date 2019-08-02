@@ -37,14 +37,14 @@ export default {
     loginUser({ commit }, payload) {
       axios
         .get("http://localhost:3004/users?email=" + payload.email)
-        .then(responce => {
-          if (responce.data.length > 0) {
-            if (responce.data[0].password === payload.password) {
+        .then(response => {
+          if (response.data.length > 0) {
+            if (response.data[0].password === payload.password) {
               const user = {
-                email: responce.data[0].email,
-                id: responce.data[0].id,
-                nickname: responce.data[0].nickname,
-                password: responce.data[0].password
+                email: response.data[0].email,
+                id: response.data[0].id,
+                nickname: response.data[0].nickname,
+                password: response.data[0].password
               };
               commit("setUser", user);
               localStorage.setItem("user", JSON.stringify(user));
