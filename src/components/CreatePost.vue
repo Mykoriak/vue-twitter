@@ -1,7 +1,14 @@
 <template>
   <div>
     <p>Привет, {{ userName }}</p>
-    <textarea placeholder="Что происходит?" v-model="postText"></textarea>
+    <textarea
+      placeholder="Что происходит?"
+      v-model="postText"
+      v-validate="'required|max:200'"
+      name="tweet"
+    ></textarea>
+    <br />
+    <span>{{ errors.first("tweet") }}</span>
     <br />
     <button @click="createPost">Твитнуть</button>
   </div>
@@ -20,14 +27,19 @@ export default class CreatePost extends Vue {
   }
 
   createPost() {
-    const user = this.$store.getters.getUserInfo;
-    const post = {
-      postText: this.postText,
-      likes: 0,
-      userId: user.id,
-      userName: user.nickname
-    };
-    this.$store.dispatch("addPost", post);
+    this.$validator.validate().then(result => {
+      if (result) {
+        const user = this.$store.getters.getUserInfo;
+        const post = {
+          postText: this.postText,
+          likes: 0,
+          userId: user.id,
+          userName: user.nickname
+        };
+        this.$store.dispatch("addPost", post);
+        return;
+      }
+    });
   }
 }
 </script>
@@ -52,8 +64,8 @@ textarea {
 }
 
 span {
-  color: #3c763d;
-  background-color: #dff0d8;
-  border-color: #d6e9c6;
+  color: red;
+  background-color: #fa8b6f;
+  border-color: #c50700;
 }
 </style>

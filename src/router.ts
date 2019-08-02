@@ -43,7 +43,10 @@ router.beforeEach((to, from, next) => {
   const loggedIn = localStorage.getItem("user");
   if (to.matched.some(record => record.meta.requiresLogin) && !loggedIn) {
     next("/login");
-  } else if (loggedIn && !to.matched.some(record => record.meta.requiresLogin)) {
+  } else if (
+    loggedIn &&
+    !to.matched.some(record => record.meta.requiresLogin)
+  ) {
     next("/");
   } else {
     next();

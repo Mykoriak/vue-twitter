@@ -3,7 +3,11 @@
     <textarea
       placeholder="Добавить комментарий"
       v-model="commentText"
+      v-validate="'required'"
+      name="comment"
     ></textarea>
+    <br />
+    <span>{{ errors.first("comment") }}</span>
     <br />
     <button @click="createComment">Комментарий</button>
   </div>
@@ -19,14 +23,19 @@ export default class CreateComment extends Vue {
   commentText = "";
 
   createComment() {
-    const user = this.$store.getters.getUserInfo;
-    const comment = {
-      commentText: this.commentText,
-      userId: user.id,
-      userName: user.nickname,
-      postId: this.postId
-    };
-    this.$store.dispatch("addComment", comment);
+    this.$validator.validate().then(result => {
+      if (result) {
+        const user = this.$store.getters.getUserInfo;
+        const comment = {
+          commentText: this.commentText,
+          userId: user.id,
+          userName: user.nickname,
+          postId: this.postId
+        };
+        this.$store.dispatch("addComment", comment);
+        return;
+      }
+    });
   }
 }
 </script>
